@@ -1,5 +1,6 @@
 import { useUser } from '@clerk/clerk-react';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CURRENCIES = [
   { name: 'Afghan Afghani', code: 'AFN' },
@@ -176,7 +177,9 @@ const handleBackendSync = async (clerkUserId: string) => {
   const handleFinalSubmit = () => {
     if (selectedCurrency && selectedLanguage) {
       updateUserPreferences(selectedCurrency, selectedLanguage);
+      navigate('/reminder');
     }
+   
   };
 
   // Filter logic based on current step
@@ -192,7 +195,7 @@ const handleBackendSync = async (clerkUserId: string) => {
 
   const selectedItem = currentStep === 'currency' ? selectedCurrency : selectedLanguage;
   const items = currentStep === 'currency' ? CURRENCIES : LANGUAGES;
-
+  const navigate = useNavigate();
   return (
     <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 min-h-screen">
       {/* Error Display */}
