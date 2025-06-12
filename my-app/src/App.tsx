@@ -12,7 +12,10 @@ import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-react';
 import CurrencySelector from './components/Language';
 import Landing from './components/Landing';
 import AuthComponent from './sign/AuthComponent';
-import ProtectedRoute from './components/Protected';
+import ProtectedRoute from './protectedroutes/Protected';
+import Notifications from './components/Notification';
+import Home from './components/home';
+import Analytics from './components/analytics';
 
 const clerkFrontendApi = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -40,6 +43,33 @@ function App() {
             element={
               <ProtectedRoute>
                 <CurrencySelector />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/reminder"
+            element={
+              <ProtectedRoute>
+                <Notifications/>
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home/>
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/analytics"
+            element={
+              <ProtectedRoute>
+                <Analytics/>
               </ProtectedRoute>
             }
           />
